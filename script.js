@@ -11,6 +11,7 @@ function registerProduct(){
     const description = document.querySelector('form #description').value;
 
     const product = {
+        id: products.length + 1,
         name,
         price,
         qtd,
@@ -33,7 +34,19 @@ function showProducts() {
                 <td>${products[i].price}</td>
                 <td>${products[i].qtd}</td>
                 <td>${products[i].description}</td>
+                <td><a onclick="removeProduct(${products[i].id})">Excluir</a></td>
             </tr>
         `
     }
+}
+
+function findProductById(id) {
+    return products.find(product => product.id === id)
+}
+
+function removeProduct(id) {
+    const productFinder = products.find(product => product.id === id) 
+    products.splice(products.indexOf(productFinder), 1)
+
+    showProducts();
 }
