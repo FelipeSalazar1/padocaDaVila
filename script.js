@@ -1,6 +1,8 @@
 const btnCadastro = document.querySelector('form button#register');
+const btnUpdate = document.querySelector('form button#update');
 
 btnCadastro.addEventListener('click', registerProduct);
+btnCadastro.addEventListener('click', updateProduct);
 
 const products = []
 
@@ -34,19 +36,55 @@ function showProducts() {
                 <td>${products[i].price}</td>
                 <td>${products[i].qtd}</td>
                 <td>${products[i].description}</td>
-                <td><a onclick="removeProduct(${products[i].id})">Excluir</a></td>
+                <td><button onclick="removeProduct(${products[i].id})">Excluir</button></td>
+                <td><button onclick="getProduct(${products[i].id})">Atualizar</button></td>
             </tr>
         `
     }
 }
 
-function findProductById(id) {
-    return products.find(product => product.id === id)
-}
+//function findProductById(id) {
+//    return products.find(product => product.id === id)
+//}
 
 function removeProduct(id) {
-    const productFinder = products.find(product => product.id === id) 
-    products.splice(products.indexOf(productFinder), 1)
+    //const productFinder = products.find(product => product.id === id) 
+    //products.splice(products.indexOf(productFinder), 1)
+
+    for (let i = 0; i < products.length; i++){
+        if(products[i].id === id){
+            products.splice(i, 1)
+            break
+        }
+    }
 
     showProducts();
+}
+
+function getProduct(id) {
+    const formUpdate = document.querySelector("#updateForm")
+    const formInsert = document.querySelector("#insertForm")
+    const listProduct = document.querySelector("#listProducts")
+
+    listProduct.classList.toggle("displayNone")
+
+    formUpdate.classList.toggle("displayFlex")
+    formUpdate.classList.toggle("displayNone")
+
+    formInsert.classList.toggle("displayFlex")
+    formInsert.classList.toggle("displayNone")
+
+    product = {}
+
+    for (let i = 0; i < products.length; i++){
+        if(products[i].id === id){
+            document.querySelector('form #nameUpdate').value = products[i].name;
+            document.querySelector('form #priceUpdate').value = products[i].price;
+            document.querySelector('form #qtdUpdate').value = products[i].qtd;
+            document.querySelector('form #descriptionUpdate').value = products[i].description;
+            break
+        }
+    }
+
+    
 }

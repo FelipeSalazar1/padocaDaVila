@@ -9,10 +9,12 @@
     <script src="./script.js" defer></script>
 </head>
 <body>
-    <h1>Padoca da Vila</h1>
-    <p>Olá, seja bem vindo a Padoca da Vila!</p>
+    <div class="text">
+        <h1>Padoca da Vila</h1>
+        <p>Olá, seja bem vindo a Padoca da Vila!</p>
+    </div>
 
-    <form>
+    <form id="insertForm" class="displayFlex">
         <label for="name">Nome</label>
         <input type="text" name="name" id="name">
 
@@ -28,20 +30,38 @@
         <button type="button" id="register">Cadastrar</button>
     </form>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Nome</th>
-                <th>Preço</th>
-                <th>Quantidade</th>
-                <th>Descrição</th>
-                <th>Ações</th>
-            </tr>
-        </thead>
+    <section id="listProducts">
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Preço</th>
+                    <th>Quantidade</th>
+                    <th>Descrição</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+    
+            <tbody id="productRows">
+                
+            </tbody>
+        </table>
+    </section>
 
-        <tbody id="productRows">
-            
-        </tbody>
-    </table>
+    <form id = "updateForm" class="displayNone">
+        <label for="name">Nome</label>
+        <input type="text" name="name" id="nameUpdate">
+
+        <label for="price">Preço</label>
+        <input type="text" name="price" id="priceUpdate">
+
+        <label for="qtd">Quantidade</label>
+        <input type="number" name="qtd" id="qtdUpdate">
+
+        <label for="description">Descrição</label>
+        <textarea name="description" id="descriptionUpdate" cols="30" rows="10"></textarea>
+
+        <button type="button" id="update">Atualizar</button>
+    </form>
 </body>
 </html>
