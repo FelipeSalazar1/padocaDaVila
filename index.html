@@ -11,10 +11,11 @@
 <body>
     <div class="text">
         <h1>Padoca da Vila</h1>
-        <p>Olá, seja bem vindo a Padoca da Vila!</p>
+        <p>Olá, seja bem vindo ao gerenciador de produtos da Padoca da Vila!</p>
+        <button id = "insert-new-product">Cadastrar novo produto</button>
     </div>
 
-    <form id="insertForm" class="displayFlex">
+    <form id="insertForm" class="displayNone">
         <label for="name">Nome</label>
         <input type="text" name="name" id="name">
 
@@ -28,6 +29,7 @@
         <textarea name="description" id="description" cols="30" rows="10"></textarea>
 
         <button type="button" id="register">Cadastrar</button>
+        <button type="button" id="cancel">Cancelar</button>
     </form>
 
     <section id="listProducts">
@@ -61,6 +63,8 @@
         <label for="description">Descrição</label>
         <textarea name="description" id="descriptionUpdate" cols="30" rows="10"></textarea>
 
+
+        <span id="id-product" class="displayNone"></span>
         <button type="button" id="update">Atualizar</button>
     </form>
 </body>
