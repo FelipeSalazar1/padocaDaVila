@@ -1,3 +1,4 @@
+// Seleciona os botões e elementos do formulário no DOM
 const btnCadastro = document.querySelector("form button#register");
 const btnUpdate = document.querySelector("form button#update");
 const btnCadastrarNovoProduto = document.querySelector("#insert-new-product");
@@ -5,23 +6,29 @@ const formInsert = document.querySelector("#insert-form");
 const listProducts = document.querySelector("#list-products");
 const formUpdate = document.querySelector("#update-form");
 
+// Adiciona ouvintes de eventos de clique aos botões
 btnCadastro.addEventListener("click", registerProduct);
 btnUpdate.addEventListener("click", updateProduct);
-btnCadastrarNovoProduto.addEventListener("click", () => {
-  formInsert.classList.toggle("display-none");
-  formInsert.classList.toggle("display-flex");
-  btnCadastrarNovoProduto.classList.toggle("display-none");
-  listProducts.classList.toggle("display-none");
-});
+btnCadastrarNovoProduto.addEventListener("click", showInsertForm);
 
+// Array para armazenar os produtos
 const products = [];
 
+// Função para alternar a visibilidade dos elementos
+function toggleVisibility(element) {
+  element.classList.toggle("display-none");
+  element.classList.toggle("display-flex");
+}
+
+// Função para registrar um produto
 function registerProduct() {
+  // Obtém os valores dos campos do formulário
   const name = document.querySelector("#name").value;
   const price = document.querySelector("#price").value;
   const qtd = document.querySelector("#qtd").value;
   const description = document.querySelector("#description").value;
 
+  // Cria um objeto de produto com os valores do formulário
   const product = {
     id: products.length + 1,
     name,
@@ -30,17 +37,22 @@ function registerProduct() {
     description,
   };
 
+  // Adiciona o produto ao array de produtos
   products.push(product);
 
-  formInsert.classList.toggle("display-none");
-  formInsert.classList.toggle("display-flex");
-  btnCadastrarNovoProduto.classList.toggle("display-none");
-  btnCadastrarNovoProduto.classList.toggle("display-flex");
-  listProducts.classList.toggle("display-none");
+  // Alterna a visibilidade dos formulários e botões após o registro do produto
+  toggleVisibility(formInsert);
+  toggleVisibility(btnCadastrarNovoProduto);
+  toggleVisibility(listProducts);
 
+  // Atualiza a lista de produtos
   showProducts();
+
+  // Mostra o botão "Cadastrar novo produto"
+  toggleVisibility(btnCadastrarNovoProduto);
 }
 
+// Função para mostrar os produtos
 function showProducts() {
   const productRows = document.querySelector("#product-rows");
   productRows.innerHTML = "";
@@ -58,56 +70,75 @@ function showProducts() {
   }
 }
 
-// function findProductById(id) {
-//   return products.find((product) => product.id === id);
-// }
-
+// Função para remover um produto
 function removeProduct(id) {
-  // const productFinder = findProductById(id);
-  // products.splice(products.indexOf(productFinder), 1);
-  for (let i = 0; i < products.length; i++) {
-    if (products[i].id === id) {
-      products.splice(i, 1);
-      break;
-    }
+  const productIndex = products.findIndex((product) => product.id === id);
+  if (productIndex > -1) {
+    products.splice(productIndex, 1);
   }
 
   showProducts();
 }
 
-function getProduct(id) {
-  formUpdate.classList.toggle("display-flex");
-  formUpdate.classList.toggle("display-none");
+// Função para mostrar o formulário de inserção
+function showInsertForm() {
+  // Esconde o botão "Cadastrar novo produto"
+  toggleVisibility(btnCadastrarNovoProduto);
 
-  btnCadastrarNovoProduto.classList.toggle("display-none");
-  btnCadastrarNovoProduto.classList.toggle("display-flex");
-
-  listProducts.classList.toggle("display-none");
-
-  for (let i = 0; i < products.length; i++) {
-    if (products[i].id === id) {
-      document.querySelector("#name-update").value = products[i].name;
-      document.querySelector("#price-update").value = products[i].price;
-      document.querySelector("#qtd-update").value = products[i].qtd;
-      document.querySelector("#description-update").value =
-        products[i].description;
-      document.querySelector("#id-product").value = products[i].id;
-      break;
-    }
+  // Verifica se o formulário de atualização está visível
+  if (!formUpdate.classList.contains("display-none")) {
+    // Esconde o formulário de atualização
+    toggleVisibility(formUpdate);
   }
+
+  // Alterna a visibilidade do formulário de inserção e da lista de produtos
+  toggleVisibility(formInsert);
+  toggleVisibility(listProducts);
 }
 
-const btnUpdateProduct = document.querySelector("#update");
+// Função para mostrar o formulário de atualização
+function showUpdateForm() {
+  // Esconde o botão "Cadastrar novo produto"
+  toggleVisibility(btnCadastrarNovoProduto);
 
-btnUpdateProduct.addEventListener("click", updateProduct);
+  // Verifica se o formulário de inserção está visível
+  if (!formInsert.classList.contains("display-none")) {
+    // Esconde o formulário de inserção
+    toggleVisibility(formInsert);
+  }
 
+  // Alterna a visibilidade do formulário de atualização e da lista de produtos
+  toggleVisibility(formUpdate);
+  toggleVisibility(listProducts);
+}
+
+// Função para obter um produto
+function getProduct(id) {
+  // Encontra o produto no array de produtos
+  const product = products.find((product) => product.id === id);
+  if (product) {
+    // Preenche os campos do formulário de atualização com os valores do produto
+    document.querySelector("#name-update").value = product.name;
+    document.querySelector("#price-update").value = product.price;
+    document.querySelector("#qtd-update").value = product.qtd;
+    document.querySelector("#description-update").value = product.description;
+    document.querySelector("#id-product").value = product.id;
+  }
+
+  // Mostra o formulário de atualização
+  showUpdateForm();
+}
+
+// Função para atualizar um produto
 function updateProduct() {
+  // Obtém os valores dos campos do formulário de atualização
   const name = document.querySelector("#name-update").value;
   const price = document.querySelector("#price-update").value;
   const qtd = document.querySelector("#qtd-update").value;
   const description = document.querySelector("#description-update").value;
   const id = document.querySelector("#id-product").value;
 
+  // Encontra o produto no array de produtos e atualiza seus valores
   for (let i = 0; i < products.length; i++) {
     if (products[i].id === id) {
       products[i].name = name;
@@ -118,11 +149,14 @@ function updateProduct() {
     }
   }
 
-  btnCadastrarNovoProduto.classList.toggle("display-none");
-  btnCadastrarNovoProduto.classList.toggle("display-flex");
-  listProducts.classList.toggle("display-none");
-  formUpdate.classList.toggle("display-flex");
-  formUpdate.classList.toggle("display-none");
+  // Alterna a visibilidade dos formulários e botões após a atualização do produto
+  toggleVisibility(formUpdate);
+  toggleVisibility(btnCadastrarNovoProduto);
+  toggleVisibility(listProducts);
 
+  // Atualiza a lista de produtos
   showProducts();
+
+  // Mostra o botão "Cadastrar novo produto"
+  toggleVisibility(btnCadastrarNovoProduto);
 }

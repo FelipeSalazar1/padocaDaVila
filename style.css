@@ -4,6 +4,17 @@
   box-sizing: border-box;
 }
 
+:root {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.6rem;
+  font-family: Arial, sans-serif;
+  padding: 2rem;
+  background-color: #f0f0f0;
+}
+
 section {
   display: flex;
   justify-content: center;
@@ -11,18 +22,110 @@ section {
 }
 
 .text {
+  margin-bottom: 2rem;
+  text-align: center;
   display: flex;
   flex-direction: column;
-  align-items: center
+  justify-content: center;
+  align-items: center;
 }
 
-.display-none{
+.text h1 {
+  color: #007bff;
+  font-size: 2rem;
+}
+
+.text p {
+  color: #333;
+  font-size: 1.2rem;
+}
+
+.text button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.text button:hover {
+  background-color: #0056b3;
+}
+
+form {
+  background-color: #fff;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0px 0px 1rem rgba(0, 0, 0, 0.1);
+}
+
+form input,
+form button {
+  width: 100%;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 0.5rem;
+  border: 0.1rem solid #ddd;
+}
+
+form button {
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: #0056b3;
+}
+
+#list-products {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0px 0px 1rem rgba(0, 0, 0, 0.1);
+}
+
+#list-products table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#list-products table th,
+#list-products table td {
+  padding: 1rem;
+  border: 0.1rem solid #ddd;
+}
+
+#list-products table th {
+  background-color: #007bff;
+  color: #fff;
+}
+
+#list-products table td button {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+}
+
+#list-products table td button:nth-child(1) {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+#list-products table td button:nth-child(2) {
+  background-color: #ffc107;
+  color: #fff;
+}
+
+.display-none {
   display: none;
 }
 
 .display-flex {
   display: flex;
   flex-direction: column;
-
-  margin: 0 10rem;
 }
