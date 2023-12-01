@@ -1,71 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
-    <link rel="stylesheet" href="style.css">
-    <script src="./script.js" defer></script>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Padoca da Vila</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
     <div class="text">
-        <h1>Padoca da Vila</h1>
-        <p>Olá, seja bem vindo ao gerenciador de produtos da Padoca da Vila!</p>
-        <button id = "insert-new-product">Cadastrar novo produto</button>
+      <h1>Padoca da Vila</h1>
+      <p>Olá, seja bem vindo ao gerenciador de produtos</p>
+      <button id="insert-new-product">Cadastrar novo produto</button>
     </div>
 
-    <form id="insertForm" class="displayNone">
-        <label for="name">Nome</label>
-        <input type="text" name="name" id="name">
+    <form id="insert-form" class="display-none">
+      <label for="name">Nome</label>
+      <input type="text" name="name" id="name" />
 
-        <label for="price">Preço</label>
-        <input type="text" name="price" id="price">
+      <label for="price">Preço</label>
+      <input type="text" name="price" id="price" />
 
-        <label for="qtd">Quantidade</label>
-        <input type="number" name="qtd" id="qtd">
+      <label for="qtd">Quantidade</label>
+      <input type="number" name="qtd" id="qtd" />
 
-        <label for="description">Descrição</label>
-        <textarea name="description" id="description" cols="30" rows="10"></textarea>
+      <label for="description">Descrição</label>
+      <textarea
+        name="description"
+        id="description"
+        cols="30"
+        rows="10"
+      ></textarea>
 
-        <button type="button" id="register">Cadastrar</button>
-        <button type="button" id="cancel">Cancelar</button>
+      <button type="button" id="register">Cadastrar</button>
     </form>
 
-    <section id="listProducts">
-        <table>
-            <thead>
-                <tr>
-                    <th>Nome</th>
-                    <th>Preço</th>
-                    <th>Quantidade</th>
-                    <th>Descrição</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-    
-            <tbody id="productRows">
-                
-            </tbody>
-        </table>
+    <form id="update-form" class="display-none">
+      <label for="name">Nome</label>
+      <input type="text" name="name" id="name-update" />
+
+      <label for="price">Preço</label>
+      <input type="text" name="price" id="price-update" />
+
+      <label for="qtd">Quantidade</label>
+      <input type="number" name="qtd" id="qtd-update" />
+
+      <label for="description">Descrição</label>
+      <textarea
+        name="description"
+        id="description-update"
+        cols="30"
+        rows="10"
+      ></textarea>
+
+      <span id="id-product" class="display-none"></span>
+
+      <button type="button" id="update">Atualizar</button>
+    </form>
+
+    <section id="list-products">
+      <table>
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Preço</th>
+            <th>Quantidade</th>
+            <th>Descrição</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+
+        <tbody id="product-rows">
+          <!-- Dentro da tag -->
+        </tbody>
+      </table>
     </section>
 
-    <form id = "updateForm" class="displayNone">
-        <label for="name">Nome</label>
-        <input type="text" name="name" id="nameUpdate">
-
-        <label for="price">Preço</label>
-        <input type="text" name="price" id="priceUpdate">
-
-        <label for="qtd">Quantidade</label>
-        <input type="number" name="qtd" id="qtdUpdate">
-
-        <label for="description">Descrição</label>
-        <textarea name="description" id="descriptionUpdate" cols="30" rows="10"></textarea>
-
-
-        <span id="id-product" class="displayNone"></span>
-        <button type="button" id="update">Atualizar</button>
-    </form>
-</body>
+    <script src="./script.js"></script>
+  </body>
 </html>
